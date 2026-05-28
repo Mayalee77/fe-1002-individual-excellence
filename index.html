@@ -52,10 +52,16 @@
       color:var(--muted);
       font-size:15px;
     }
+    .teacher strong{
+      font-size:20px;
+      color:var(--ink);
+      letter-spacing:.01em;
+    }
     .teacher a{
       color:var(--primary);
       text-decoration:none;
       font-weight:700;
+      text-transform:lowercase;
     }
     .status{
       margin:14px 0 0;
@@ -156,7 +162,7 @@
     }
     .actions{
       display:grid;
-      grid-template-columns:1fr 1fr;
+      grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
       gap:10px;
     }
     .btn{
@@ -178,6 +184,11 @@
       border-color:var(--primary);
       background:linear-gradient(180deg,#3a6bf0 0%,#2a59d1 100%);
     }
+    .note{
+      margin:0 0 10px;
+      font-size:14px;
+      color:var(--muted);
+    }
   </style>
 </head>
 <body>
@@ -185,7 +196,7 @@
     <section class="hero">
       <h1>FE 1002 Individual Excellence Portal</h1>
       <p class="subtitle">The Future Prospects of Chinese and World Civilization (AI Oriented) (1002)</p>
-      <p class="teacher">Instructor: <strong>Maya Siqing LI</strong> · <a href="https://www.bnbu.edu.cn/faculty.htm#/mayasqli/cn" target="_blank" rel="noreferrer">Faculty Profile</a></p>
+      <p class="teacher">Instructor: <strong>Maya Siqing LI</strong> · <a href="https://www.bnbu.edu.cn/faculty.htm#/mayasqli/cn" target="_blank" rel="noreferrer">personal link</a></p>
       <p class="status" id="status">Loading individual works...</p>
     </section>
     <section class="grid" id="grid"></section>
@@ -193,25 +204,26 @@
 
   <script>
     const WORKS = [
-      { group: "Group 1", chinese: "易欣悦", english: "Jade", aiTool: "Not explicitly named", civA: "Yuan China", civB: "Islamic World", file: "works/individual/Group1_Assignment2__易欣悦_Assignment2__易欣悦_Assignment2.pptx" },
-      { group: "Group 1", chinese: "李炜桐", english: "ASA", aiTool: "Dify", civA: "Modern China", civB: "Southeast Asia (Nanyang)", file: "works/individual/Group1_Assignment2__李炜桐_Assignment2__李炜桐_Assignment2.pptx" },
-      { group: "Group 1", chinese: "王嫣然", english: "Rianna", aiTool: "Not explicitly named", civA: "Chinese Civilization", civB: "Western Civilization", file: "works/individual/Group1_Assignment2__王嫣然_Assignment2__王嫣然_Assignment2.pptx" },
-      { group: "Group 2", chinese: "夏晨骞", english: "Zane", aiTool: "Not explicitly named", civA: "Sanxingdui (Ancient China)", civB: "West/Central Asian Civilizations", file: "works/individual/Group2_Assignment2__夏晨骞_Assignment2__夏晨骞_Assignment2.pptx" },
-      { group: "Group 2", chinese: "王俊博", english: "Stephen", aiTool: "Not explicitly named", civA: "Chinese Civilization", civB: "Western Civilization", file: "works/individual/Group2_Assignment2__王俊博_Assignment2__王俊博_Assignment2.pptx" },
-      { group: "Group 2", chinese: "胡峻铭", english: "Jimmy Hu", aiTool: "Not explicitly named", civA: "Chinese Civilization", civB: "Christian/Islamic-Western Civilizations", file: "works/individual/Group2_Assignment2__胡峻铭_Assignment2__胡峻铭_Assignment2.pptx" },
-      { group: "Group 2", chinese: "黄麒润", english: "Karen", aiTool: "Claude, ChatGPT, and DeepSeek", civA: "Chinese Civilization", civB: "Western Civilization", file: "works/individual/Group2_Assignment2__黄麒润_Assignment2__黄麒润_Assignment2.pptx" },
-      { group: "Group 3", chinese: "刘畅", english: "Grace", aiTool: "Not explicitly named", civA: "Chinese Civilization", civB: "Sogdian/Central Asian Civilization", file: "works/individual/Group3_Assignment2__刘畅_Assignment2__刘畅_Assignment2.pptx" },
-      { group: "Group 4", chinese: "刘雨萌", english: "Icey", aiTool: "Not explicitly named", civA: "Chinese Civilization", civB: "Europe/Middle East Civilizations", file: "works/individual/Group4_Assignment2__刘雨萌_Assignment2__刘雨萌_Assignment2.pptx" },
-      { group: "Group 5", chinese: "张栩豪", english: "Kevin", aiTool: "Not explicitly named", civA: "European Civilization", civB: "Global Public Health Civilization", file: "works/individual/Group5_Assignment2__张栩豪_Assignment2__张栩豪_Assignment2.pptx" },
-      { group: "Group 5", chinese: "林禹同", english: "Gosling", aiTool: "AI image generation (tool not specified)", civA: "Chinese Civilization", civB: "Islamic Civilization", file: "works/individual/Group5_Assignment2__林禹同_Assignment2__林禹同_Assignment2.pptx" },
-      { group: "Group 5", chinese: "熊大略", english: "David Xiong", aiTool: "AI creative workflow (tool not specified)", civA: "Chinese Civilization", civB: "Western/Soviet Civilization", file: "works/individual/Group5_Assignment2__熊大略_Assignment2__熊大略_Assignment2.pptx" },
-      { group: "Group 5", chinese: "谢尚哲", english: "Steve", aiTool: "ChatGPT and Midjourney", civA: "Chinese Civilization", civB: "Arabic/European Civilization", file: "works/individual/Group5_Assignment2__谢尚哲_Assignment2__谢尚哲_Assignment2.pptx" },
-      { group: "Group 7", chinese: "邓杰潆", english: "Astoria", aiTool: "ChatGPT and Pika", civA: "Chinese Civilization", civB: "Western Civilization", file: "works/individual/Group7_Assignment2__邓杰潆_Assignment2__邓杰潆_Assignment2.pptx" },
-      { group: "Group 7", chinese: "陆思辰", english: "Stella", aiTool: "Not explicitly named", civA: "Modern China", civB: "Global/Industrial Civilization", file: "works/individual/Group7_Assignment2__陆思辰_Assignment2__陆思辰_Assignment2.pptx" },
-      { group: "Group 8", chinese: "刘咏昭", english: "", aiTool: "Midjourney", civA: "Chinese Civilization", civB: "Western Civilization", file: "works/individual/Group8_Assignment2__刘咏昭_Assignment2__刘咏昭_Assignment2.pptx" },
-      { group: "Group 8", chinese: "季玥彤", english: "", aiTool: "Not explicitly named", civA: "Chinese Civilization", civB: "Western Civilization", file: "works/individual/Group8_Assignment2__季玥彤_Assignment2__季玥彤_Assignment2.pptx" },
-      { group: "Group 9", chinese: "刘博文", english: "Eric", aiTool: "Not explicitly named", civA: "Chinese Civilization", civB: "Islamic Civilization", file: "works/individual/Group9_Assignment2__刘博文_Assignment2__刘博文_Assignment2.pptx" },
-      { group: "Group 9", chinese: "王科凯", english: "Jason", aiTool: "Not explicitly named", civA: "Han China", civB: "Abbasid Islamic World", file: "works/individual/Group9_Assignment2__王科凯_Assignment2__王科凯_Assignment2.pptx" }
+      { group: "Group 1", name: "Jade", aiTool: "Not explicitly named", civA: "Yuan China", civB: "Islamic World", file: "works/individual/Group1_Assignment2__易欣悦_Assignment2__易欣悦_Assignment2.pptx" },
+      { group: "Group 1", name: "ASA", aiTool: "Dify", civA: "Modern China", civB: "Southeast Asia (Nanyang)", file: "works/individual/Group1_Assignment2__李炜桐_Assignment2__李炜桐_Assignment2.pptx" },
+      { group: "Group 1", name: "Rianna", aiTool: "Not explicitly named", civA: "Chinese Civilization", civB: "Western Civilization", file: "works/individual/Group1_Assignment2__王嫣然_Assignment2__王嫣然_Assignment2.pptx" },
+      { group: "Group 1", name: "Letitia", aiTool: "Claude Design and Codex", civA: "Silk Road / Tang China", civB: "Cold War Socialist Europe", websiteLink: "works/letitia-ai/index.html", websiteLabel: "Open AI Work", note: "PPT exceeds GitHub's single-file upload limit, so only the AI website is hosted here." },
+      { group: "Group 2", name: "Zane", aiTool: "Not explicitly named", civA: "Sanxingdui (Ancient China)", civB: "West/Central Asian Civilizations", file: "works/individual/Group2_Assignment2__夏晨骞_Assignment2__夏晨骞_Assignment2.pptx" },
+      { group: "Group 2", name: "Stephen", aiTool: "Not explicitly named", civA: "Chinese Civilization", civB: "Western Civilization", file: "works/individual/Group2_Assignment2__王俊博_Assignment2__王俊博_Assignment2.pptx" },
+      { group: "Group 2", name: "Jimmy Hu", aiTool: "Not explicitly named", civA: "Chinese Civilization", civB: "Christian/Islamic-Western Civilizations", file: "works/individual/Group2_Assignment2__胡峻铭_Assignment2__胡峻铭_Assignment2.pptx" },
+      { group: "Group 2", name: "Karen", aiTool: "Claude, ChatGPT, and DeepSeek", civA: "Chinese Civilization", civB: "Western Civilization", file: "works/individual/Group2_Assignment2__黄麒润_Assignment2__黄麒润_Assignment2.pptx" },
+      { group: "Group 3", name: "Grace", aiTool: "Not explicitly named", civA: "Chinese Civilization", civB: "Sogdian/Central Asian Civilization", file: "works/individual/Group3_Assignment2__刘畅_Assignment2__刘畅_Assignment2.pptx", aiLink: "https://www.bilibili.com/video/BV1cKLb6dEnz/", aiLabel: "Open AI Video" },
+      { group: "Group 4", name: "Icey", aiTool: "Not explicitly named", civA: "Chinese Civilization", civB: "Europe/Middle East Civilizations", file: "works/individual/Group4_Assignment2__刘雨萌_Assignment2__刘雨萌_Assignment2.pptx" },
+      { group: "Group 5", name: "Kevin", aiTool: "Not explicitly named", civA: "European Civilization", civB: "Global Public Health Civilization", file: "works/individual/Group5_Assignment2__张栩豪_Assignment2__张栩豪_Assignment2.pptx" },
+      { group: "Group 5", name: "Gosling", aiTool: "AI image generation (tool not specified)", civA: "Chinese Civilization", civB: "Islamic Civilization", file: "works/individual/Group5_Assignment2__林禹同_Assignment2__林禹同_Assignment2.pptx" },
+      { group: "Group 5", name: "David Xiong", aiTool: "AI creative workflow (tool not specified)", civA: "Chinese Civilization", civB: "Western/Soviet Civilization", file: "works/individual/Group5_Assignment2__熊大略_Assignment2__熊大略_Assignment2.pptx" },
+      { group: "Group 5", name: "Steve", aiTool: "ChatGPT and Midjourney", civA: "Chinese Civilization", civB: "Arabic/European Civilization", file: "works/individual/Group5_Assignment2__谢尚哲_Assignment2__谢尚哲_Assignment2.pptx" },
+      { group: "Group 7", name: "Astoria", aiTool: "ChatGPT and Pika", civA: "Chinese Civilization", civB: "Western Civilization", file: "works/individual/Group7_Assignment2__邓杰潆_Assignment2__邓杰潆_Assignment2.pptx" },
+      { group: "Group 7", name: "Stella", aiTool: "Not explicitly named", civA: "Modern China", civB: "Global/Industrial Civilization", file: "works/individual/Group7_Assignment2__陆思辰_Assignment2__陆思辰_Assignment2.pptx" },
+      { group: "Group 8", name: "Yongzhao", aiTool: "Midjourney", civA: "Chinese Civilization", civB: "Western Civilization", file: "works/individual/Group8_Assignment2__刘咏昭_Assignment2__刘咏昭_Assignment2.pptx" },
+      { group: "Group 8", name: "Yuetong", aiTool: "Not explicitly named", civA: "Chinese Civilization", civB: "Western Civilization", file: "works/individual/Group8_Assignment2__季玥彤_Assignment2__季玥彤_Assignment2.pptx" },
+      { group: "Group 9", name: "Eric", aiTool: "Not explicitly named", civA: "Chinese Civilization", civB: "Islamic Civilization", file: "works/individual/Group9_Assignment2__刘博文_Assignment2__刘博文_Assignment2.pptx" },
+      { group: "Group 9", name: "Jason", aiTool: "Not explicitly named", civA: "Han China", civB: "Abbasid Islamic World", file: "works/individual/Group9_Assignment2__王科凯_Assignment2__王科凯_Assignment2.pptx" }
     ];
 
     const grid = document.getElementById("grid");
@@ -221,9 +233,25 @@
       return path.split("/").pop();
     }
 
+    function buildActionButtons(item){
+      const actions = [];
+      if (item.file) {
+        const shortName = fileName(item.file);
+        actions.push(`<a class="btn" href="${item.file}" target="_blank" rel="noreferrer">View PPT</a>`);
+        actions.push(`<a class="btn primary" href="${item.file}" download="${shortName}">Download PPT</a>`);
+      }
+      if (item.websiteLink) {
+        actions.push(`<a class="btn" href="${item.websiteLink}" target="_blank" rel="noreferrer">${item.websiteLabel || "Open Website"}</a>`);
+      }
+      if (item.aiLink) {
+        actions.push(`<a class="btn" href="${item.aiLink}" target="_blank" rel="noreferrer">${item.aiLabel || "Open AI Work"}</a>`);
+      }
+      return actions.join("");
+    }
+
     function buildCard(item, idx){
-      const title = item.english ? `${item.chinese} (${item.english})` : item.chinese;
-      const shortName = fileName(item.file);
+      const title = item.name;
+      const workLabel = item.file ? (item.fileLabel || "Presentation file is available below.") : "Linked work is available below.";
       const card = document.createElement("article");
       card.className = "card";
       card.innerHTML = `
@@ -239,11 +267,9 @@
           <div class="meta-row"><span class="meta-key">Civilization 2:</span><span class="meta-value">${item.civB}</span></div>
         </div>
         <div class="work">
-          <p class="filename">${shortName}</p>
-          <div class="actions">
-            <a class="btn" href="${item.file}" target="_blank" rel="noreferrer">View</a>
-            <a class="btn primary" href="${item.file}" download="${shortName}">Download</a>
-          </div>
+          <p class="filename">${workLabel}</p>
+          ${item.note ? `<p class="note">${item.note}</p>` : ""}
+          <div class="actions">${buildActionButtons(item)}</div>
         </div>
       `;
       return card;
