@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FE 1002 Individual Excellence Portal</title>
+  <style>
+    :root{
+      --bg:#eef3fb;
+      --card:#ffffff;
+      --ink:#1d2a44;
+      --muted:#61708c;
+      --line:#c8d4ea;
+      --primary:#2a59d1;
+      --primary-soft:#dbe7ff;
+      --ok:#2c7b45;
+      --ok-soft:#dcf3e4;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      color:var(--ink);
+      background:radial-gradient(1200px 800px at 10% -20%, #dce7ff 0%, var(--bg) 50%, #eaf0f8 100%);
+      font-family:"Avenir Next","Segoe UI",sans-serif;
+      line-height:1.45;
+    }
+    .page{
+      width:min(1200px,92vw);
+      margin:26px auto 42px;
+    }
+    .hero{
+      background:rgba(255,255,255,.86);
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:28px 30px;
+      box-shadow:0 12px 30px rgba(33,54,110,.08);
+      backdrop-filter:blur(3px);
+    }
+    h1{
+      margin:0 0 12px;
+      font-size:clamp(32px,4vw,54px);
+      line-height:1.06;
+      letter-spacing:.2px;
+    }
+    .subtitle{
+      margin:0;
+      color:var(--muted);
+      font-size:clamp(16px,1.9vw,22px);
+    }
+    .status{
+      margin:14px 0 0;
+      color:var(--muted);
+      font-size:15px;
+    }
+    .grid{
+      margin-top:24px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(318px,1fr));
+      gap:18px;
+    }
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:20px;
+      box-shadow:0 8px 24px rgba(31,58,124,.06);
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      min-height:390px;
+    }
+    .card-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:8px;
+    }
+    .badge{
+      background:var(--primary-soft);
+      color:var(--primary);
+      border-radius:999px;
+      padding:6px 12px;
+      font-weight:800;
+      letter-spacing:.08em;
+      font-size:13px;
+      text-transform:uppercase;
+    }
+    .state{
+      border-radius:999px;
+      padding:6px 12px;
+      font-weight:700;
+      font-size:13px;
+      color:var(--ok);
+      background:var(--ok-soft);
+    }
+    .name{
+      margin:0;
+      font-size:30px;
+      line-height:1.08;
+    }
+    .group{
+      margin:2px 0 0;
+      color:var(--muted);
+      font-size:16px;
+    }
+    .meta{
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:#f6f9ff;
+      padding:12px;
+      display:grid;
+      gap:7px;
+    }
+    .meta-row{
+      font-size:15px;
+      color:#344565;
+      display:flex;
+      gap:8px;
+      align-items:baseline;
+    }
+    .meta-key{
+      color:var(--primary);
+      font-weight:800;
+      min-width:66px;
+    }
+    .meta-value{
+      color:#5a6884;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      display:block;
+      flex:1;
+    }
+    .work{
+      margin-top:auto;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:12px;
+      background:#fbfdff;
+    }
+    .filename{
+      margin:0 0 10px;
+      font-size:15px;
+      color:#3a4b6a;
+      word-break:break-all;
+    }
+    .actions{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      border-radius:14px;
+      text-decoration:none;
+      font-weight:700;
+      border:1px solid var(--line);
+      color:var(--ink);
+      background:#fff;
+      transition:all .15s ease;
+    }
+    .btn:hover{ transform:translateY(-1px); border-color:#9eb5e9; }
+    .btn.primary{
+      color:#fff;
+      border-color:var(--primary);
+      background:linear-gradient(180deg,#3a6bf0 0%,#2a59d1 100%);
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>FE 1002 Individual Excellence Portal</h1>
+      <p class="subtitle">The Future Prospects of Chinese and World Civilization (AI Oriented) (1002)</p>
+      <p class="status" id="status">Loading individual works...</p>
+    </section>
+    <section class="grid" id="grid"></section>
+  </main>
+
+  <script>
+    const WORKS = [
+      { group: "Group 1", chinese: "易欣悦", english: "Jade", file: "works/individual/Group1_Assignment2__易欣悦_Assignment2__易欣悦_Assignment2.pptx" },
+      { group: "Group 1", chinese: "李炜桐", english: "ASA", file: "works/individual/Group1_Assignment2__李炜桐_Assignment2__李炜桐_Assignment2.pptx" },
+      { group: "Group 1", chinese: "王嫣然", english: "Rianna", file: "works/individual/Group1_Assignment2__王嫣然_Assignment2__王嫣然_Assignment2.pptx" },
+      { group: "Group 2", chinese: "夏晨骞", english: "Zane", file: "works/individual/Group2_Assignment2__夏晨骞_Assignment2__夏晨骞_Assignment2.pptx" },
+      { group: "Group 2", chinese: "王俊博", english: "Stephen", file: "works/individual/Group2_Assignment2__王俊博_Assignment2__王俊博_Assignment2.pptx" },
+      { group: "Group 2", chinese: "胡峻铭", english: "Jimmy Hu", file: "works/individual/Group2_Assignment2__胡峻铭_Assignment2__胡峻铭_Assignment2.pptx" },
+      { group: "Group 2", chinese: "黄麒润", english: "Karen", file: "works/individual/Group2_Assignment2__黄麒润_Assignment2__黄麒润_Assignment2.pptx" },
+      { group: "Group 3", chinese: "刘畅", english: "Grace", file: "works/individual/Group3_Assignment2__刘畅_Assignment2__刘畅_Assignment2.pptx" },
+      { group: "Group 4", chinese: "刘雨萌", english: "Icey", file: "works/individual/Group4_Assignment2__刘雨萌_Assignment2__刘雨萌_Assignment2.pptx" },
+      { group: "Group 5", chinese: "张栩豪", english: "Kevin", file: "works/individual/Group5_Assignment2__张栩豪_Assignment2__张栩豪_Assignment2.pptx" },
+      { group: "Group 5", chinese: "林禹同", english: "Gosling", file: "works/individual/Group5_Assignment2__林禹同_Assignment2__林禹同_Assignment2.pptx" },
+      { group: "Group 5", chinese: "熊大略", english: "David Xiong", file: "works/individual/Group5_Assignment2__熊大略_Assignment2__熊大略_Assignment2.pptx" },
+      { group: "Group 5", chinese: "谢尚哲", english: "Steve", file: "works/individual/Group5_Assignment2__谢尚哲_Assignment2__谢尚哲_Assignment2.pptx" },
+      { group: "Group 7", chinese: "邓杰潆", english: "Astoria", file: "works/individual/Group7_Assignment2__邓杰潆_Assignment2__邓杰潆_Assignment2.pptx" },
+      { group: "Group 7", chinese: "陆思辰", english: "Stella", file: "works/individual/Group7_Assignment2__陆思辰_Assignment2__陆思辰_Assignment2.pptx" },
+      { group: "Group 8", chinese: "刘咏昭", english: "", file: "works/individual/Group8_Assignment2__刘咏昭_Assignment2__刘咏昭_Assignment2.pptx" },
+      { group: "Group 8", chinese: "季玥彤", english: "", file: "works/individual/Group8_Assignment2__季玥彤_Assignment2__季玥彤_Assignment2.pptx" },
+      { group: "Group 9", chinese: "刘博文", english: "Eric", file: "works/individual/Group9_Assignment2__刘博文_Assignment2__刘博文_Assignment2.pptx" },
+      { group: "Group 9", chinese: "王科凯", english: "Jason", file: "works/individual/Group9_Assignment2__王科凯_Assignment2__王科凯_Assignment2.pptx" }
+    ];
+
+    const grid = document.getElementById("grid");
+    const status = document.getElementById("status");
+
+    function fileName(path){
+      return path.split("/").pop();
+    }
+
+    function buildCard(item, idx){
+      const title = item.english ? `${item.chinese} (${item.english})` : item.chinese;
+      const shortName = fileName(item.file);
+      const card = document.createElement("article");
+      card.className = "card";
+      card.innerHTML = `
+        <div class="card-top">
+          <span class="badge">Student ${String(idx + 1).padStart(2, "0")}</span>
+          <span class="state">Ready</span>
+        </div>
+        <h2 class="name">${title}</h2>
+        <p class="group">${item.group}</p>
+        <div class="meta">
+          <div class="meta-row"><span class="meta-key">AI Tool:</span><span class="meta-value">________________</span></div>
+          <div class="meta-row"><span class="meta-key">Theme:</span><span class="meta-value">________________</span></div>
+          <div class="meta-row"><span class="meta-key">Title:</span><span class="meta-value">________________</span></div>
+        </div>
+        <div class="work">
+          <p class="filename">${shortName}</p>
+          <div class="actions">
+            <a class="btn" href="${item.file}" target="_blank" rel="noreferrer">View</a>
+            <a class="btn primary" href="${item.file}" download="${shortName}">Download</a>
+          </div>
+        </div>
+      `;
+      return card;
+    }
+
+    WORKS.forEach((item, idx) => grid.appendChild(buildCard(item, idx)));
+    status.textContent = `Loaded ${WORKS.length} individual excellent works.`;
+  </script>
+</body>
+</html>
