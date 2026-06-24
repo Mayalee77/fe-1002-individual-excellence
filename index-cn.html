@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CHI1293 FE 1002 个人优秀作品展</title>
+  <style>
+    :root{
+      --bg:#eef3fb;
+      --card:#ffffff;
+      --ink:#1d2a44;
+      --muted:#61708c;
+      --line:#c8d4ea;
+      --primary:#2a59d1;
+      --primary-soft:#dbe7ff;
+      --ok:#2c7b45;
+      --ok-soft:#dcf3e4;
+    }
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      color:var(--ink);
+      background:radial-gradient(1200px 800px at 10% -20%, #dce7ff 0%, var(--bg) 50%, #eaf0f8 100%);
+      font-family:"Avenir Next","Segoe UI",sans-serif;
+      line-height:1.45;
+    }
+    .page{
+      width:min(1200px,92vw);
+      margin:26px auto 42px;
+    }
+    .hero{
+      background:rgba(255,255,255,.86);
+      border:1px solid var(--line);
+      border-radius:28px;
+      padding:28px 30px;
+      box-shadow:0 12px 30px rgba(33,54,110,.08);
+      backdrop-filter:blur(3px);
+    }
+    h1{
+      margin:0 0 12px;
+      font-size:clamp(32px,4vw,54px);
+      line-height:1.06;
+      letter-spacing:.2px;
+    }
+    .subtitle{
+      margin:0;
+      color:var(--muted);
+      font-size:clamp(16px,1.9vw,22px);
+    }
+    .teacher{
+      margin:8px 0 0;
+      color:var(--muted);
+      font-size:15px;
+    }
+    .teacher strong{
+      font-size:20px;
+      color:var(--ink);
+      letter-spacing:.01em;
+    }
+    .teacher a{
+      color:var(--primary);
+      text-decoration:none;
+      font-weight:700;
+      text-transform:lowercase;
+    }
+    .status{
+      margin:14px 0 0;
+      color:var(--muted);
+      font-size:15px;
+    }
+    .grid{
+      margin-top:24px;
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(318px,1fr));
+      gap:18px;
+    }
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:20px;
+      box-shadow:0 8px 24px rgba(31,58,124,.06);
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      min-height:390px;
+    }
+    .card-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:8px;
+    }
+    .badge{
+      background:var(--primary-soft);
+      color:var(--primary);
+      border-radius:999px;
+      padding:6px 12px;
+      font-weight:800;
+      letter-spacing:.08em;
+      font-size:13px;
+      text-transform:uppercase;
+    }
+    .state{
+      border-radius:999px;
+      padding:6px 12px;
+      font-weight:700;
+      font-size:13px;
+      color:var(--ok);
+      background:var(--ok-soft);
+    }
+    .name{
+      margin:0;
+      font-size:30px;
+      line-height:1.08;
+    }
+    .group{
+      margin:2px 0 0;
+      color:var(--muted);
+      font-size:16px;
+    }
+    .meta{
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:#f6f9ff;
+      padding:12px;
+      display:grid;
+      gap:7px;
+    }
+    .meta-row{
+      font-size:15px;
+      color:#344565;
+      display:flex;
+      gap:8px;
+      align-items:baseline;
+    }
+    .meta-key{
+      color:var(--primary);
+      font-weight:800;
+      min-width:66px;
+    }
+    .meta-value{
+      color:#5a6884;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      display:block;
+      flex:1;
+    }
+    .work{
+      margin-top:auto;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:12px;
+      background:#fbfdff;
+    }
+    .filename{
+      margin:0 0 10px;
+      font-size:15px;
+      color:#3a4b6a;
+      word-break:break-all;
+    }
+    .actions{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+      gap:10px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:42px;
+      border-radius:14px;
+      text-decoration:none;
+      font-weight:700;
+      border:1px solid var(--line);
+      color:var(--ink);
+      background:#fff;
+      transition:all .15s ease;
+    }
+    .btn:hover{ transform:translateY(-1px); border-color:#9eb5e9; }
+    .btn.primary{
+      color:#fff;
+      border-color:var(--primary);
+      background:linear-gradient(180deg,#3a6bf0 0%,#2a59d1 100%);
+    }
+    .note{
+      margin:0 0 10px;
+      font-size:14px;
+      color:var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <section class="hero">
+      <h1>CHI1293 FE 1002 个人优秀作品展</h1>
+      <p class="subtitle">CHI1293 中国与世界文明的未来前景（人工智能导向）(1002)</p>
+      <p class="teacher">任课教师：<strong>Maya Siqing LI</strong> · <a href="https://www.bnbu.edu.cn/faculty.htm#/mayasqli/cn" target="_blank" rel="noreferrer">个人主页</a></p>
+      <p class="status" id="status">正在加载个人作品…</p>
+    </section>
+    <section class="grid" id="grid"></section>
+  </main>
+
+  <script>
+    const WORKS = [
+      { group: "Group 1", name: "易欣悦 Jade", aiTool: "Not explicitly named", civA: "Yuan China", civB: "Islamic World", file: "works/individual/Group1_Assignment2__易欣悦_Assignment2__易欣悦_Assignment2.pptx" },
+      { group: "Group 1", name: "李炜桐 ASA", aiTool: "Dify", civA: "Modern China", civB: "Southeast Asia (Nanyang)", file: "works/individual/Group1_Assignment2__李炜桐_Assignment2__李炜桐_Assignment2.pptx" },
+      { group: "Group 1", name: "王嫣然 Rianna", aiTool: "Not explicitly named", civA: "Chinese Civilization", civB: "Western Civilization", file: "works/individual/Group1_Assignment2__王嫣然_Assignment2__王嫣然_Assignment2.pptx" },
+      { group: "Group 1", name: "张亦乐 Letitia", aiTool: "Claude Design and Codex", civA: "Silk Road / Tang China", civB: "Cold War Socialist Europe", file: "works/individual/Group1_张亦乐_Letitia_Assignment2.pptx", websiteLink: "works/letitia-ai/index.html", websiteLabel: "查看 AI 作品" },
+      { group: "Group 2", name: "夏晨骞 Zane", aiTool: "Not explicitly named", civA: "Sanxingdui (Ancient China)", civB: "West/Central Asian Civilizations", file: "works/individual/Group2_Assignment2__夏晨骞_Assignment2__夏晨骞_Assignment2.pptx" },
+      { group: "Group 2", name: "王俊博 Stephen", aiTool: "Not explicitly named", civA: "Chinese Civilization", civB: "Western Civilization", file: "works/individual/Group2_Assignment2__王俊博_Assignment2__王俊博_Assignment2.pptx" },
+      { group: "Group 2", name: "胡峻铭 Jimmy Hu", aiTool: "Not explicitly named", civA: "Chinese Civilization", civB: "Christian/Islamic-Western Civilizations", file: "works/individual/Group2_Assignment2__胡峻铭_Assignment2__胡峻铭_Assignment2.pptx" },
+      { group: "Group 2", name: "黄麒润 Karen", aiTool: "Claude, ChatGPT, and DeepSeek", civA: "Chinese Civilization", civB: "Western Civilization", file: "works/individual/Group2_Assignment2__黄麒润_Assignment2__黄麒润_Assignment2.pptx" },
+      { group: "Group 3", name: "刘畅 Grace", aiTool: "Not explicitly named", civA: "Chinese Civilization", civB: "Sogdian/Central Asian Civilization", file: "works/individual/Group3_Assignment2__刘畅_Assignment2__刘畅_Assignment2.pptx", aiLink: "https://www.bilibili.com/video/BV1cKLb6dEnz/", aiLabel: "查看 AI 视频" },
+      { group: "Group 4", name: "刘雨萌 Icey", aiTool: "Not explicitly named", civA: "Chinese Civilization", civB: "Europe/Middle East Civilizations", file: "works/individual/Group4_Assignment2__刘雨萌_Assignment2__刘雨萌_Assignment2.pptx" },
+      { group: "Group 5", name: "张栩豪 Kevin", aiTool: "Not explicitly named", civA: "European Civilization", civB: "Global Public Health Civilization", file: "works/individual/Group5_Assignment2__张栩豪_Assignment2__张栩豪_Assignment2.pptx" },
+      { group: "Group 5", name: "林禹同 Gosling", aiTool: "AI image generation (tool not specified)", civA: "Chinese Civilization", civB: "Islamic Civilization", file: "works/individual/Group5_Assignment2__林禹同_Assignment2__林禹同_Assignment2.pptx" },
+      { group: "Group 5", name: "熊大略 David Xiong", aiTool: "AI creative workflow (tool not specified)", civA: "Chinese Civilization", civB: "Western/Soviet Civilization", file: "works/individual/Group5_Assignment2__熊大略_Assignment2__熊大略_Assignment2.pptx" },
+      { group: "Group 5", name: "谢尚哲 Steve", aiTool: "ChatGPT and Midjourney", civA: "Chinese Civilization", civB: "Arabic/European Civilization", file: "works/individual/Group5_Assignment2__谢尚哲_Assignment2__谢尚哲_Assignment2.pptx" },
+      { group: "Group 5", name: "王振宇 Crystal", aiTool: "Claude Code", civA: "Late Qing China", civB: "Western Industrial Civilization", file: "works/individual/Group5_王振宇_Crystal_Assignment2.pptx", websiteLink: "https://fuzhou.progie25.top/", websiteLabel: "查看 AI 作品" },
+      { group: "Group 7", name: "邓杰潆 Astoria", aiTool: "ChatGPT and Pika", civA: "Chinese Civilization", civB: "Western Civilization", file: "works/individual/Group7_Assignment2__邓杰潆_Assignment2__邓杰潆_Assignment2.pptx" },
+      { group: "Group 7", name: "陆思辰 Stella", aiTool: "Not explicitly named", civA: "Modern China", civB: "Global/Industrial Civilization", file: "works/individual/Group7_Assignment2__陆思辰_Assignment2__陆思辰_Assignment2.pptx" },
+      { group: "Group 8", name: "刘咏昭 Yongzhao", aiTool: "Midjourney", civA: "Chinese Civilization", civB: "Western Civilization", file: "works/individual/Group8_Assignment2__刘咏昭_Assignment2__刘咏昭_Assignment2.pptx" },
+      { group: "Group 8", name: "季玥彤 Yuetong", aiTool: "Not explicitly named", civA: "Chinese Civilization", civB: "Western Civilization", file: "works/individual/Group8_Assignment2__季玥彤_Assignment2__季玥彤_Assignment2.pptx" },
+      { group: "Group 9", name: "刘博文 Eric", aiTool: "Not explicitly named", civA: "Chinese Civilization", civB: "Islamic Civilization", file: "works/individual/Group9_Assignment2__刘博文_Assignment2__刘博文_Assignment2.pptx" },
+      { group: "Group 9", name: "王科凯 Jason", aiTool: "Not explicitly named", civA: "Han China", civB: "Abbasid Islamic World", file: "works/individual/Group9_Assignment2__王科凯_Assignment2__王科凯_Assignment2.pptx" }
+    ];
+
+    const grid = document.getElementById("grid");
+    const status = document.getElementById("status");
+
+    function fileName(path){
+      return path.split("/").pop();
+    }
+
+    function buildActionButtons(item){
+      const actions = [];
+      if (item.file) {
+        const shortName = fileName(item.file);
+        actions.push(`<a class="btn" href="${item.file}" target="_blank" rel="noreferrer">查看 PPT</a>`);
+        actions.push(`<a class="btn primary" href="${item.file}" download="${shortName}">下载 PPT</a>`);
+      }
+      if (item.websiteLink) {
+        actions.push(`<a class="btn" href="${item.websiteLink}" target="_blank" rel="noreferrer">${item.websiteLabel || "打开网页"}</a>`);
+      }
+      if (item.aiLink) {
+        actions.push(`<a class="btn" href="${item.aiLink}" target="_blank" rel="noreferrer">${item.aiLabel || "查看 AI 作品"}</a>`);
+      }
+      return actions.join("");
+    }
+
+    function buildCard(item, idx){
+      const title = item.name;
+      const workLabel = item.file ? (item.fileLabel || "演示文件见下方。") : "相关作品链接见下方。";
+      const card = document.createElement("article");
+      card.className = "card";
+      card.innerHTML = `
+        <div class="card-top">
+          <span class="badge">学生 ${String(idx + 1).padStart(2, "0")}</span>
+          <span class="state">已就绪</span>
+        </div>
+        <h2 class="name">${title}</h2>
+        <p class="group">第 ${item.group.replace(/\D/g,"")} 组</p>
+        <div class="meta">
+          <div class="meta-row"><span class="meta-key">AI 工具：</span><span class="meta-value">${item.aiTool}</span></div>
+          <div class="meta-row"><span class="meta-key">文明 1：</span><span class="meta-value">${item.civA}</span></div>
+          <div class="meta-row"><span class="meta-key">文明 2：</span><span class="meta-value">${item.civB}</span></div>
+        </div>
+        <div class="work">
+          <p class="filename">${workLabel}</p>
+          ${item.note ? `<p class="note">${item.note}</p>` : ""}
+          <div class="actions">${buildActionButtons(item)}</div>
+        </div>
+      `;
+      return card;
+    }
+
+    WORKS.forEach((item, idx) => grid.appendChild(buildCard(item, idx)));
+    status.textContent = `已加载 ${WORKS.length} 份个人优秀作品。`;
+  </script>
+</body>
+</html>
